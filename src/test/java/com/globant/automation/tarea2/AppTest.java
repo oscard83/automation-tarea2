@@ -12,6 +12,8 @@ import com.globant.automation.tarea2.pages.PackagePreviewPage;
 import com.globant.automation.tarea2.pages.ConfirmationFlightPage;
 import com.globant.automation.tarea2.pages.ConfirmationPackagePage;
 import com.globant.automation.tarea2.pages.SearchHotelFlightPage;
+import com.globant.automation.tarea2.pages.SearchHotelPage;
+import com.globant.automation.tarea2.pages.SearchHotelResultsPage;
 import com.globant.automation.tarea2.pages.SearchPackageResultsPage;
 import com.globant.automation.tarea2.pages.SelectFlightPackage;
 import com.globant.automation.tarea2.pages.SelectRoomPage;
@@ -32,6 +34,8 @@ public class AppTest extends TestCase
 	private SelectFlightPackage selectFlightPackage = null;
 	private PackagePreviewPage packagePreviewPage = null;
 	private ConfirmationPackagePage confirmationPackagePage = null;
+	private SearchHotelPage searchHotelPage = null;
+	private SearchHotelResultsPage searchHotelResultsPage = null;
 	private String URL = "https://www.travelocity.com/";
 	
 	public AppTest(){
@@ -100,6 +104,23 @@ public class AppTest extends TestCase
 		
 		confirmationPackagePage = new ConfirmationPackagePage(driver);
 		Assert.assertTrue(confirmationPackagePage.checkConfirmationPage());
+	}
+	
+	/*
+	 * Ejercicio 3
+	 * 
+	 * * */
+	
+	@Test
+	public void exercise3() {
+		driver.get(URL);
+		searchHotelPage = new SearchHotelPage(driver);
+		searchHotelPage.clickHotelTabButton();
+		searchHotelPage.searchFlight("montevideo, uruguay", getCurrentDay().toString(), 1);
+		
+		searchHotelResultsPage = new SearchHotelResultsPage(driver);
+		Assert.assertTrue(searchHotelResultsPage.checkSponsoredHotel());
+		Assert.assertTrue(searchHotelResultsPage.checkDiscountHotel());
 	}
 	
 	private Integer getCurrentDay(){
