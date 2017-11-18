@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
  * Pagina que mapea la confirmacion de los vuelos que hemos elegidos
  * */
 
-public class ConfirmationTripPage extends BasePage{
+public class ConfirmationFlightPage extends BasePage{
 
 	@FindBy(id = "totalPriceForTrip")
 	private WebElement totalPriceForTrip;
@@ -31,7 +31,7 @@ public class ConfirmationTripPage extends BasePage{
 	@FindBy(id = "modalCloseButton")
 	private WebElement modalCloseButton;
 	
-	public ConfirmationTripPage(WebDriver driver) {
+	public ConfirmationFlightPage(WebDriver driver) {
 		super(driver);
 	}
 	

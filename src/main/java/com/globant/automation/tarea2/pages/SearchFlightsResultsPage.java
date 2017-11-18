@@ -15,7 +15,7 @@ import org.openqa.selenium.support.ui.Select;
  * Pagina que mapea los resultados de la busqueda de vuelos
  * */
 
-public class SearchResultsPage extends BasePage{
+public class SearchFlightsResultsPage extends BasePage{
 
 	@FindBy(id = "flightModuleList")
 	private WebElement listOfResults;
@@ -29,7 +29,7 @@ public class SearchResultsPage extends BasePage{
 	
 	String progressBar = "//*[@id='pi-interstitial']/div/div";
 	
-	public SearchResultsPage(WebDriver driver) {
+	public SearchFlightsResultsPage(WebDriver driver) {
 		super(driver);
 	}
 
