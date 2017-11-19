@@ -50,17 +50,20 @@ public class SearchHotelFlightPage extends BasePage{
 	@FindBy(id = "package-returning-hp-package")
 	private WebElement dateArrivalPackageField;
 	
-//	@FindBy(id = "flight-adults-hp-flight")
-//	private WebElement qtyADTSelect;
+	@FindBy(id = "partialHotelBooking-hp-package")
+	private WebElement partialHotelBooking;
 	
-//	@FindBy(id = "flight-children-hp-flight")
-//	private WebElement qtyCHDSelect;
-	
+	@FindBy(id = "package-checkin-hp-package")
+	private WebElement partialStayHotelBooking;
+		
 	@FindBy(xpath = "//*[@id='flight-departing-wrapper-hp-flight']/div/div/button[2]")
 	private WebElement datePickerPagingNextButton;
 	
 	@FindBy(xpath = "//*[@id='package-departing-wrapper-hp-package']/div/div/button[2]")
 	private WebElement datePickerPackagePagingNextButton;
+	
+	@FindBy(xpath = "//*[@id='package-checkin-wrapper-hp-package']/div/div/button[2]")
+	private WebElement datePickerPartialStayPagingNextButton;
 	
 	String calendarDepartureDates = "//*[@id='flight-departing-wrapper-hp-flight']/div/div/div[2]/table/tbody//button";
 	
@@ -69,6 +72,11 @@ public class SearchHotelFlightPage extends BasePage{
 	String calendarPackageDepartureDates = "//*[@id='package-departing-wrapper-hp-package']/div/div/div[2]/table/tbody//button";
 	
 	String calendarPackageArrivalDates = "//*[@id='package-returning-wrapper-hp-package']/div/div/div[2]/table/tbody//button";
+	
+	String calendarPartialStayCheckInDates = "//*[@id='package-checkin-wrapper-hp-package']/div/div/div[2]/table/tbody//button";
+	
+	@FindBy(xpath = "//*[@id='gcw-packages-form-hp-package']/div[1]")
+	private WebElement partialStayErrorMessage;
 	
 	@FindBy(xpath = "//*[@id='gcw-flights-form-hp-flight']/div[7]/label/button")
 	private WebElement searchFlightButton;
@@ -131,6 +139,46 @@ public class SearchHotelFlightPage extends BasePage{
 		selectDateInCalendar(returnDay.toString() , calendarPackageArrivalDates);
 		
 		searchPackageButton.click();
+	}
+	
+	public void searchHotelPartialStay(String origin, String destination, String currentDay, int qtyADT){
+		wait.until(ExpectedConditions.elementToBeClickable(originPackageField));
+		originPackageField.clear();
+		originPackageField.sendKeys(origin);
+		
+		wait.until(ExpectedConditions.elementToBeClickable(destinationPackageField));
+		destinationPackageField.clear();
+		destinationPackageField.sendKeys(destination);
+		
+		wait.until(ExpectedConditions.elementToBeClickable(dateDeparturePackageField));
+		dateDeparturePackageField.click();
+		datePickerPackagePagingNextButton.click();
+		datePickerPackagePagingNextButton.click();
+		selectDateInCalendar(currentDay, calendarPackageDepartureDates);
+		
+		Integer returnDay = new Integer(currentDay);
+		returnDay = returnDay + 13;
+		dateArrivalPackageField.click();
+		selectDateInCalendar(returnDay.toString() , calendarPackageArrivalDates);
+		
+		partialHotelBooking.click();
+		partialStayHotelBooking.click();
+		datePickerPartialStayPagingNextButton.click();
+		datePickerPartialStayPagingNextButton.click();
+		selectDateInCalendar(returnDay.toString() , calendarPartialStayCheckInDates);
+		
+		searchPackageButton.click();
+	}
+	
+	public boolean checkPartialStayErrorMessage(){
+		boolean checkResult = false;
+		wait.until(ExpectedConditions.visibilityOf(partialStayErrorMessage));
+		
+		if(partialStayErrorMessage.getText().length()>0)
+			checkResult = true;
+		else
+			checkResult = false;
+		return checkResult;
 	}
 	
 	private void selectDateInCalendar(String day, String Calendar){

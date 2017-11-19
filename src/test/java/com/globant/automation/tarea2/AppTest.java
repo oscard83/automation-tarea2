@@ -48,7 +48,7 @@ public class AppTest extends TestCase
 	 * 
 	 * * */
 		
-	@Test
+	//@Test
 	public void exercise1() {
 		driver.get(URL);
 		searchPage = new SearchHotelFlightPage(driver);
@@ -77,7 +77,7 @@ public class AppTest extends TestCase
 	 * 
 	 * * */
 	
-	@Test
+	//@Test
 	public void exercise2() {
 		driver.get(URL);
 		searchPage = new SearchHotelFlightPage(driver);
@@ -111,7 +111,7 @@ public class AppTest extends TestCase
 	 * 
 	 * * */
 	
-	@Test
+	//@Test
 	public void exercise3() {
 		driver.get(URL);
 		searchHotelPage = new SearchHotelPage(driver);
@@ -123,13 +123,22 @@ public class AppTest extends TestCase
 		Assert.assertTrue(searchHotelResultsPage.checkDiscountHotel());
 	}
 	
+	@Test
+	public void exercise4() {
+		driver.get(URL);
+		searchPage = new SearchHotelFlightPage(driver);
+		searchPage.clickFlightsAndHotelTabButton();
+		searchPage.searchHotelPartialStay("LAS", "LAX", getCurrentDay().toString(), 1);
+		Assert.assertTrue(searchPage.checkPartialStayErrorMessage());
+	}
+	
 	private Integer getCurrentDay(){
 		GregorianCalendar c = new GregorianCalendar();
 		c.setTimeInMillis(System.currentTimeMillis());
 		return c.get(Calendar.DAY_OF_MONTH);
 	}
 	
-	@AfterSuite
+	//@AfterSuite
 	public void cerrarSuite(){
 		if(driver!=null)
 			driver.close();
