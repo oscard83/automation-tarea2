@@ -48,7 +48,7 @@ public class AppTest extends TestCase
 	 * 
 	 * * */
 		
-	//@Test
+	@Test
 	public void exercise1() {
 		driver.get(URL);
 		searchPage = new SearchHotelFlightPage(driver);
@@ -77,7 +77,7 @@ public class AppTest extends TestCase
 	 * 
 	 * * */
 	
-	//@Test
+	@Test
 	public void exercise2() {
 		driver.get(URL);
 		searchPage = new SearchHotelFlightPage(driver);
@@ -111,7 +111,7 @@ public class AppTest extends TestCase
 	 * 
 	 * * */
 	
-	//@Test
+	@Test
 	public void exercise3() {
 		driver.get(URL);
 		searchHotelPage = new SearchHotelPage(driver);
@@ -122,6 +122,11 @@ public class AppTest extends TestCase
 		Assert.assertTrue(searchHotelResultsPage.checkSponsoredHotel());
 		Assert.assertTrue(searchHotelResultsPage.checkDiscountHotel());
 	}
+	
+	/*
+	 * Ejercicio 4
+	 * 
+	 * * */
 	
 	@Test
 	public void exercise4() {
@@ -138,7 +143,7 @@ public class AppTest extends TestCase
 		return c.get(Calendar.DAY_OF_MONTH);
 	}
 	
-	//@AfterSuite
+	@AfterSuite
 	public void cerrarSuite(){
 		if(driver!=null)
 			driver.close();
