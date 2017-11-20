@@ -11,7 +11,7 @@ public class MyDriver {
 		
 		switch(browser){
 			case "Firefox":
-				System.setProperty("webdriver.gecko.driver", "/Volumes/Documentos/oscar/geckodriver");
+				System.setProperty("webdriver.gecko.driver", "C:\\selenium_ff\\geckodriver.exe");
 				driver = new FirefoxDriver();
 				break;
 		}

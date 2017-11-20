@@ -57,7 +57,7 @@ public class AppTest extends TestCase
 		driver.get(URL);
 		searchPage = new SearchHotelFlightPage(driver);
 		searchPage.clickFlightsTabButton();
-		searchPage.searchFlight("LAS", "LAX", getCurrentDay().toString(), 1);
+		searchPage.searchFlight("LAS", "LAX", "10", 1);
 		
 		searchResultsPage = new SearchFlightsResultsPage(driver);
 		Assert.assertTrue(searchResultsPage.checkSearchResults());
@@ -86,7 +86,7 @@ public class AppTest extends TestCase
 		driver.get(URL);
 		searchPage = new SearchHotelFlightPage(driver);
 		searchPage.clickFlightsAndHotelTabButton();
-		searchPage.searchFlightHotel("LAS", "LAX", getCurrentDay().toString(), 1);
+		searchPage.searchFlightHotel("LAS", "LAX", "10", 1);
 		
 		searchPackageResultsPage = new SearchPackageResultsPage(driver);
 		Assert.assertTrue(searchPackageResultsPage.checkSearchResults());
@@ -120,7 +120,7 @@ public class AppTest extends TestCase
 		driver.get(URL);
 		searchHotelPage = new SearchHotelPage(driver);
 		searchHotelPage.clickHotelTabButton();
-		searchHotelPage.searchFlight("montevideo, uruguay", getCurrentDay().toString(), 1);
+		searchHotelPage.searchFlight("montevideo, uruguay", "10", 1);
 		
 		searchHotelResultsPage = new SearchHotelResultsPage(driver);
 		Assert.assertTrue(searchHotelResultsPage.checkSponsoredHotel());
@@ -137,7 +137,7 @@ public class AppTest extends TestCase
 		driver.get(URL);
 		searchPage = new SearchHotelFlightPage(driver);
 		searchPage.clickFlightsAndHotelTabButton();
-		searchPage.searchHotelPartialStay("LAS", "LAX", getCurrentDay().toString(), 1);
+		searchPage.searchHotelPartialStay("LAS", "LAX", "10", 1);
 		Assert.assertTrue(searchPage.checkPartialStayErrorMessage());
 	}
 	
@@ -160,13 +160,13 @@ public class AppTest extends TestCase
 		searchCruisesResultsPage.selectOptionWithHighestDiscount();
 	}
 	
-	private Integer getCurrentDay(){
-		GregorianCalendar c = new GregorianCalendar();
-		c.setTimeInMillis(System.currentTimeMillis());
-		return c.get(Calendar.DAY_OF_MONTH);
-	}
+//	private Integer getCurrentDay(){
+//		GregorianCalendar c = new GregorianCalendar();
+//		c.setTimeInMillis(System.currentTimeMillis());
+//		return c.get(Calendar.DAY_OF_MONTH);
+//	}
 	
-	@AfterSuite
+	//@AfterSuite
 	public void cerrarSuite(){
 		if(driver!=null)
 			driver.close();

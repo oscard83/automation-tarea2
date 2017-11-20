@@ -39,7 +39,8 @@ public class PackagePreviewPage extends BasePage{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h1.section-header-main.header-class")));
 		
 		List<WebElement> carsCollection = carsResults.findElements(By.className("gt-add-btn"));
-		carsCollection.get(0).click();
+		if(carsCollection.size() > 0)
+			carsCollection.get(0).click();
 	}
 	
 	public boolean checkReviewPage(){

@@ -13,19 +13,19 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ConfirmationPackagePage extends BasePage{
 
-	@FindBy(xpath = "//*[@id='trip-summary']/div[2]/div[3]/span[2]")
-	private WebElement totalPriceForTrip;
+	@FindBy(className = "price-summary")
+	private WebElement priceSummaryForTrip;
 	
-	@FindBy(className = "faceoff-submodule-title")
+	@FindBy(className = "product-summary")
 	private WebElement flightOptionsText;
 	
-	@FindBy(css = "div.room-information-wrapper.cf")
+	@FindBy(className = "traveler-info-header")
 	private WebElement hotelText;
 	
 	@FindBy(id = "trip-summary")
 	private WebElement tripSummary;
 	
-	@FindBy(id = "continue-booking")
+	@FindBy(id = "complete-booking")
 	private WebElement continueBookingButton;
 	
 	
@@ -44,7 +44,7 @@ public class ConfirmationPackagePage extends BasePage{
 		String hotelOptions;
 		String tripSummaryText;
 		
-		totalPriceForTripText = totalPriceForTrip.getText();
+		totalPriceForTripText = priceSummaryForTrip.getText();
 		
 		js.executeScript("arguments[0].scrollIntoView(true);",flightOptionsText);
 		flightOptions = flightOptionsText.getText();
