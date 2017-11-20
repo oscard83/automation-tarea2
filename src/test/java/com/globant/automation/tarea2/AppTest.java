@@ -9,6 +9,8 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.Test;
 import com.globant.automation.tarea2.driver.MyDriver;
 import com.globant.automation.tarea2.pages.PackagePreviewPage;
+import com.globant.automation.tarea2.pages.SearchCruisesPage;
+import com.globant.automation.tarea2.pages.SearchCruisesResultsPage;
 import com.globant.automation.tarea2.pages.ConfirmationFlightPage;
 import com.globant.automation.tarea2.pages.ConfirmationPackagePage;
 import com.globant.automation.tarea2.pages.SearchHotelFlightPage;
@@ -36,6 +38,8 @@ public class AppTest extends TestCase
 	private ConfirmationPackagePage confirmationPackagePage = null;
 	private SearchHotelPage searchHotelPage = null;
 	private SearchHotelResultsPage searchHotelResultsPage = null;
+	private SearchCruisesPage searchCruisesPage = null;
+	private SearchCruisesResultsPage searchCruisesResultsPage = null;
 	private String URL = "https://www.travelocity.com/";
 	
 	public AppTest(){
@@ -135,6 +139,25 @@ public class AppTest extends TestCase
 		searchPage.clickFlightsAndHotelTabButton();
 		searchPage.searchHotelPartialStay("LAS", "LAX", getCurrentDay().toString(), 1);
 		Assert.assertTrue(searchPage.checkPartialStayErrorMessage());
+	}
+	
+	/*
+	 * Ejercicio 5
+	 * 
+	 * * */
+	
+	@Test
+	public void exercise5() {
+		driver.get(URL);
+		searchCruisesPage = new SearchCruisesPage(driver);
+		searchCruisesPage.clickCruisesTab();
+		searchCruisesPage.searchCruise("Europe", "May 2018", 1);
+		
+		searchCruisesResultsPage = new SearchCruisesResultsPage(driver);
+		Assert.assertTrue(searchCruisesResultsPage.checkFilteredCruises());
+		searchCruisesResultsPage.selectCruiseLenght();
+		Assert.assertTrue(searchCruisesResultsPage.checkDiscuountsInCruises());
+		searchCruisesResultsPage.selectOptionWithHighestDiscount();
 	}
 	
 	private Integer getCurrentDay(){
