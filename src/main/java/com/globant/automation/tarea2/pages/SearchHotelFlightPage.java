@@ -75,6 +75,9 @@ public class SearchHotelFlightPage extends BasePage{
 	
 	String calendarPartialStayCheckInDates = "//*[@id='package-checkin-wrapper-hp-package']/div/div/div[2]/table/tbody//button";
 	
+	@FindBy(xpath = "//*[@id='gcw-packages-form-hp-package']/fieldset/label[2]")
+	private WebElement subTabAirHotelCar;
+	
 	@FindBy(xpath = "//*[@id='gcw-packages-form-hp-package']/div[1]")
 	private WebElement partialStayErrorMessage;
 	
@@ -120,6 +123,7 @@ public class SearchHotelFlightPage extends BasePage{
 	
 	public void searchFlightHotel(String origin, String destination, String currentDay, int qtyADT){
 		wait.until(ExpectedConditions.elementToBeClickable(originPackageField));
+		subTabAirHotelCar.click();
 		originPackageField.clear();
 		originPackageField.sendKeys(origin);
 		

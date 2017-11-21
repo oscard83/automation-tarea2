@@ -13,22 +13,16 @@ public class PackagePreviewPage extends BasePage{
 	@FindBy(id = "dxGroundTransportationModule")
 	private WebElement carsResults;
 	
-	@FindBy(id = "tripTotal")
+	@FindBy(className = "prod-total")
 	private WebElement totalPrice;
 	
-	@FindBy(id = "departure-dates")
+	@FindBy(className = "travel-date")
 	private WebElement packageDates;
 	
-	@FindBy(id = "flight-header-traveler")
+	@FindBy(css = "h2.title-main")
 	private WebElement travellerInfo;
-	
-	@FindBy(id = "flight-card-0")
-	private WebElement departureFlight;
-
-	@FindBy(id = "flight-card-1")
-	private WebElement arrivalFlight;
-	
-	@FindBy(xpath ="//*[@id='FlightUDPBookNowButton1']/button")
+		
+	@FindBy(id ="complete-booking")
 	private WebElement continueBookingButton;
 	
 	public PackagePreviewPage(WebDriver driver) {
@@ -44,10 +38,10 @@ public class PackagePreviewPage extends BasePage{
 	}
 	
 	public boolean checkReviewPage(){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h1.section-header-main.page-title")));
 		boolean checkResult = false;
 		
-		if(totalPrice.getText().length()>0 && packageDates.getText().length()>0 && travellerInfo.getText().length()>0 
-				&& departureFlight.getText().length()>0 && arrivalFlight.getText().length()>0){
+		if(totalPrice.getText().length()>0 && packageDates.getText().length()>0 && travellerInfo.getText().length()>0){
 			checkResult = true;
 		}else
 			checkResult = false;

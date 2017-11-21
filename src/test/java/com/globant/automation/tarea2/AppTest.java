@@ -1,8 +1,5 @@
 package com.globant.automation.tarea2;
 
-
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
@@ -17,6 +14,7 @@ import com.globant.automation.tarea2.pages.SearchHotelFlightPage;
 import com.globant.automation.tarea2.pages.SearchHotelPage;
 import com.globant.automation.tarea2.pages.SearchHotelResultsPage;
 import com.globant.automation.tarea2.pages.SearchPackageResultsPage;
+import com.globant.automation.tarea2.pages.SelectCarPage;
 import com.globant.automation.tarea2.pages.SelectFlightPackage;
 import com.globant.automation.tarea2.pages.SelectRoomPage;
 import com.globant.automation.tarea2.pages.SearchFlightsResultsPage;
@@ -40,6 +38,7 @@ public class AppTest extends TestCase
 	private SearchHotelResultsPage searchHotelResultsPage = null;
 	private SearchCruisesPage searchCruisesPage = null;
 	private SearchCruisesResultsPage searchCruisesResultsPage = null;
+	private SelectCarPage selectCarPage = null;
 	private String URL = "https://www.travelocity.com/";
 	
 	public AppTest(){
@@ -52,7 +51,7 @@ public class AppTest extends TestCase
 	 * 
 	 * * */
 		
-	@Test
+	//@Test
 	public void exercise1() {
 		driver.get(URL);
 		searchPage = new SearchHotelFlightPage(driver);
@@ -101,13 +100,15 @@ public class AppTest extends TestCase
 		selectFlightPackage.selectFlight(0);
 		selectFlightPackage.selectFlight(2);
 		
+		selectCarPage = new SelectCarPage(driver);
+		selectCarPage.selectCar();
+		
 		packagePreviewPage = new PackagePreviewPage(driver);
-		packagePreviewPage.selectCar();
 		Assert.assertTrue(packagePreviewPage.checkReviewPage());
 		packagePreviewPage.continueBooking();
 		
-		confirmationPackagePage = new ConfirmationPackagePage(driver);
-		Assert.assertTrue(confirmationPackagePage.checkConfirmationPage());
+//		confirmationPackagePage = new ConfirmationPackagePage(driver);
+//		Assert.assertTrue(confirmationPackagePage.checkConfirmationPage());
 	}
 	
 	/*
@@ -115,7 +116,7 @@ public class AppTest extends TestCase
 	 * 
 	 * * */
 	
-	@Test
+	//@Test
 	public void exercise3() {
 		driver.get(URL);
 		searchHotelPage = new SearchHotelPage(driver);
@@ -132,7 +133,7 @@ public class AppTest extends TestCase
 	 * 
 	 * * */
 	
-	@Test
+	//@Test
 	public void exercise4() {
 		driver.get(URL);
 		searchPage = new SearchHotelFlightPage(driver);
@@ -146,7 +147,7 @@ public class AppTest extends TestCase
 	 * 
 	 * * */
 	
-	@Test
+	//@Test
 	public void exercise5() {
 		driver.get(URL);
 		searchCruisesPage = new SearchCruisesPage(driver);
@@ -160,13 +161,7 @@ public class AppTest extends TestCase
 		searchCruisesResultsPage.selectOptionWithHighestDiscount();
 	}
 	
-//	private Integer getCurrentDay(){
-//		GregorianCalendar c = new GregorianCalendar();
-//		c.setTimeInMillis(System.currentTimeMillis());
-//		return c.get(Calendar.DAY_OF_MONTH);
-//	}
-	
-	//@AfterSuite
+	@AfterSuite
 	public void cerrarSuite(){
 		if(driver!=null)
 			driver.close();
