@@ -91,7 +91,7 @@ public class AppTest extends TestCase
 		Assert.assertTrue(searchPackageResultsPage.checkSearchResults());
 		searchPackageResultsPage.orderByPrice();
 		Assert.assertTrue(searchPackageResultsPage.checkResultsOrderedList());
-		searchPackageResultsPage.selectPackageByStars(2);
+		searchPackageResultsPage.selectPackageByStars(3);
 		
 		selectRoomPage = new SelectRoomPage(driver);
 		selectRoomPage.selectRoom(0);
@@ -161,7 +161,7 @@ public class AppTest extends TestCase
 		searchCruisesResultsPage.selectOptionWithHighestDiscount();
 	}
 	
-	@AfterSuite
+	//@AfterSuite
 	public void cerrarSuite(){
 		if(driver!=null)
 			driver.close();

@@ -112,6 +112,7 @@ public class SearchPackageResultsPage extends BasePage{
 				if(Integer.parseInt(qtyStars.getText().trim().substring(0, 1)) >= stars){
 					packageSelectLink = element.findElement(By.className("flex-link"));
 					js.executeScript("arguments[0].scrollIntoView(true);",packageSelectLink);
+					wait.until(ExpectedConditions.elementToBeClickable(packageSelectLink));
 					packageSelectLink.click();
 					switchToPopUp();
 					break;
@@ -130,6 +131,6 @@ public class SearchPackageResultsPage extends BasePage{
 		    subWindowHandler = iterator.next();
 		
 		driver.close();
-		driver.switchTo().window(subWindowHandler);
+		driver.switchTo().window(subWindowHandler);		
 	}
 }
